@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <nav class="nabar nabar-fixed-top nabar-inverse" style="background-color: #222;">
+        <div class="container" style="height: 50px;">
+          <nav class="nav navbar-nav navbar-left" style="color: white; font-size: 20px;">
+            <span>Bookers</span>
+          </nav>
+          
+          <nav class="nav navar-nav nabar-right" style="float: right; padding-top: 15px;">
+            <% if user_signed_in? %>
+              
+                <%= link_to 'Home', user_path(current_user), class: "glyphicon glyphicon-home" %>
+                <%= link_to 'Users', users_path, class: "glyphicon glyphicon-user" %>
+                <%= link_to 'Books', books_path, class: "glyphicon glyphicon-book" %>
+                <%= link_to 'logout', destroy_user_session_path, method: :delete, class: "glyphicon glyphicon-log-out" %>
+
+            <% else %>
+              
+                <%= link_to 'Home', root_path, class: "glyphicon glyphicon-home" %>
+                <%= link_to 'About', about_path, class: "glyphicon glyphicon-link" %>
+                <%= link_to 'sign up', new_user_registration_path, class: "glyphicon glyphicon-edit" %>
+                <%= link_to 'login', new_user_session_path, class: "glyphicon glyphicon-log-in" %>
+              
+            <% end %>
+          </nav>
+        </div>
+      </nav>
+    </header>
+    
+    <%= yield %>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-xs-offset-9">
+            <p>CopyRight Infratop.inc</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
