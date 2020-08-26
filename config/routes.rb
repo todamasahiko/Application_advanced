@@ -6,8 +6,7 @@ Rails.application.routes.draw do
   end
   
   root 'books#top'
-  root 'books#home'
-  get '/about' => 'books#about'
+  get 'home/about' => 'books#about'
   resources :books, only: [:index, :show, :edit, :create, :update, :destroy] do
     resources :books, only: [:destroy]
   end

@@ -1,9 +1,8 @@
 class BooksController < ApplicationController
   
-  def top
-  end
+  before_action :authenticate_user!, except:[:top, :home, :about]
 
-  def home
+  def top
   end
 
   def about
@@ -30,7 +29,7 @@ class BooksController < ApplicationController
   end
 
   def create
-
+    @books = Book.all
     @book = Book.new(book_params)
     @book.user_id = current_user.id
       if @book.save
